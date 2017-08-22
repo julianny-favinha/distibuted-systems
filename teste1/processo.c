@@ -6,6 +6,11 @@
 //  MC714 2s 017
 //
 
+//
+// Fontes
+// https://stackoverflow.com/questions/7918529/measuring-time-of-multi-threading-program
+// https://stackoverflow.com/questions/876605/multiple-child-process
+//
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,6 +19,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/mman.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include <sys/time.h>
 
 // returns the time of day in miliseconds

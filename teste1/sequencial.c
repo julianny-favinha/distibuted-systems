@@ -6,6 +6,12 @@
 //  MC714 2s 017
 //
 
+//
+// Fontes
+// https://stackoverflow.com/questions/7918529/measuring-time-of-multi-threading-program
+// https://stackoverflow.com/questions/876605/multiple-child-process
+//
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
