@@ -3,7 +3,9 @@
 
 **Avaliação de desempenho**
 
-**Versão sequencial** de 0 a N*2ˆ20, gera um número aleatório (usando a função rand()) e soma em uma variável cumulative&#95;sum. Por fim, calcula a média aritmética.
+Seja QTD&#95;NUM = N * 2^20
+
+**Versão sequencial** de 0 a QTD_NUM, gera um número aleatório (usando a função rand()) e soma em uma variável cumulative&#95;sum. Por fim, calcula a média aritmética.
 
 **Versão multithread** utiliza k threads. Cada thread gera uma fatia de números aleatórios (usando a função rand&#95;r(), que é _thread safe_) e soma esses elementos em uma variável partial&#95;sum. Após feita essa soma, usando mutex, o valor de partial&#95;sum é acrescentado à variável sum. Finalmente, calculamos a média aritmética.
 
@@ -13,9 +15,9 @@ Tanto para a versão multithread quanto para a versão processo, a fatia de núm
 
 Seja i o número da thread ou processo. Então i é responsável por
 
-* i*(N/k) números, exceto o último i que é responsável por
+* (QTD&#95;NUM / k) números, exceto o último i que é responsável por
 
-* N - i*(N/k) números
+* (QTD&#95;NUM - i * (QTD&#95;NUM / k)) números
 
 
 É esperado que com o aumento de k, o tempo de execução da versão sequencial seja constante e nas versões multithread e multiprocesso o tempo diminua, já que o trabalho é dividido.
