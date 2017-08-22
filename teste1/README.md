@@ -3,9 +3,16 @@
 
 **Avaliação de desempenho**
 
-Compare o desempenho das três versões. Avalie para N = 64, e k = 2, 4, 8.
+**Versão sequencial** de 0 a N*2ˆ20, gera um número aleatório (usando a função rand()) e soma em uma variável cumulative&#95;sum. Por fim, calcula a média aritmética. Independe de k, então o tempo é esperado constante.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. 
+**Versão multithread** utiliza k threads. Cada thread gera uma fatia de números aleatórios (usando a função rand&#95;r(), que é _thread safe_) e soma esses elementos numa variável partial&#95;sum. Após feita essa soma, usando mutex, o valor de partial&#95;sum é acrescentado à variável sum. Finalmente, calculamos a média aritmética. É esperado que o tempo de execução diminua com o aumento do número de threads, já que o trabalho é dividido.
+
+**Versão processo** utiliza k processos. Cada processo gera uma fatia de números aleatórios (usando a função rand()), colocando cada um em sua posição correta no vetor de memória compartilhada ptr&#95;cumulative&#95;sum. Após isso,  soma as k somas cumulativas de modo sequencial e calcula a média aritmética. 
+
+
+É esperado que com o aumento de k, o tempo de execução da versão sequencial seja constante e nas versões multithread e multiprocessoe o tempo diminua, já que o trabalho é paralelizado.
+
 
 **Gráfico**
+
 ![Gráfico](images/graph-timexk.png)
