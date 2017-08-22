@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -lm -Wall -g -pthread 
+CFLAGS = -Wall -pthread -lm
 
 PROGRAMS = sequencial \
 		multithread \
@@ -9,3 +9,6 @@ run: $(PROGRAMS)
 	./sequencial 64
 	./multithread 64 4
 	./processo 64 4
+
+processo: processo.c
+	$(CC) $(CFLAGS) processo.c -o processo -lrt
