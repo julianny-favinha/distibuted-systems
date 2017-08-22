@@ -13,9 +13,9 @@ Tanto para a versão multithread quanto para a versão processo, a fatia de núm
 
 Seja i o número da thread ou processo. Então i é responsável por
 
-* i&ast;(N/k) números, exceto o último i que é responsável por
+* i*(N/k) números, exceto o último i que é responsável por
 
-* N - i&ast;(N/k) números
+* N - i*(N/k) números
 
 
 É esperado que com o aumento de k, o tempo de execução da versão sequencial seja constante e nas versões multithread e multiprocesso o tempo diminua, já que o trabalho é dividido.
