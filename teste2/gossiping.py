@@ -74,8 +74,9 @@ def client(N, k, PORT_NUMBER, id_process):
 	global successes
 
 	#print "CLI: "+str(PORT_NUMBER + id_process)+" tem a message -"+message+"-"
-
-	while time.time() < timeout:
+	stop_spreading = False
+	
+	while time.time() < timeout and not stop_spreading:
 		if message != '':
 			context = zmq.Context()
 			socket = context.socket(zmq.REQ)
@@ -106,6 +107,7 @@ def client(N, k, PORT_NUMBER, id_process):
 					else:
 						if stop(k):
 							#print "CLI: "+str(PORT_NUMBER + id_process)+" ***parou***"
+							stop_spreading = True
 							break
 						#else:
 							#print "CLI: "+str(PORT_NUMBER + id_process)+" continua"
@@ -170,7 +172,7 @@ def thread(spread_time, infected, sum_connections, min_connections, max_connecti
 if __name__ == '__main__':
 	start_time = time.time()	
 
-	N = 1000
+	N = 5
 	k = 4
 	PORT_NUMBER = 9000
 	processes = []
